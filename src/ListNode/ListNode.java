@@ -1,4 +1,4 @@
-package reverseListNode;
+package ListNode;
 
 public class ListNode {
     int val;
