@@ -1,9 +1,11 @@
-package mergeSort;
+package sorting.mergeSort;
 
 public class MergeSort {
     
     public static int[] mergeSort(int[] arr, int l, int r) { // array, starting index of array, last index of array
         if (l < r) {
+
+            // Find the middle point of arr
             int m = (l + r) / 2;
 
             mergeSort(arr, l, m);   // sort left half
@@ -13,6 +15,9 @@ public class MergeSort {
         return arr;
     } 
 
+    // Merges two subarrays of arr[].
+    // First subarray is arr[l..m]
+    // Second subarray is arr[m+1..r]
     public static void merge(int[] arr, int l, int m, int r) { 
         
         // Find lengths of two subarrays to be merged
