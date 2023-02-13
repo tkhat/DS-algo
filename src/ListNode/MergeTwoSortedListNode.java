@@ -2,7 +2,20 @@ package ListNode;
 
 public class MergeTwoSortedListNode {
 
-    public static ListNode merge(ListNode first, ListNode second) {
+    public static ListNode mergeSortedListNodeList(ListNode[] lists) {
+        ListNode curr;
+        if (lists.length > 1) {
+            curr = merge(lists[0], lists[1]);
+        } else {
+            return lists[0];
+        }
+        for (int i = 2; i < lists.length; i++) {
+            curr = merge(curr, lists[i]);
+        }
+        return curr;
+    }
+
+    private static ListNode merge(ListNode first, ListNode second) {
         ListNode head = new ListNode();
         ListNode curr = new ListNode();
         head.next = curr;
