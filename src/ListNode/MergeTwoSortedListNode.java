@@ -3,19 +3,42 @@ package ListNode;
 public class MergeTwoSortedListNode {
 
     public static ListNode mergeSortedListNodeList(ListNode[] lists) {
-        ListNode curr;
-        if (lists.length > 1) {
-            curr = merge(lists[0], lists[1]);
-        } else {
+        int length = lists.length;
+        int i = 0;
+        while (i < length) {
+            int l;
+            int r;
+            if (i == 0) {
+                l = 0;
+                r = 1;
+            } else {
+                l = i * 2;
+                r = l + 1;
+            }
+            if (l < length && r < length) {
+                lists[i] = merge(lists[l], lists[r]);
+            } else if (l < length) {
+                if (i > 0){
+                    lists[i-1] = merge(lists[i-1],lists[l]);
+                } else {
+                    lists[i] = lists[l];
+                }
+                length = length / 2;
+                i = -1;
+            } else {
+                length = length / 2;
+                i = -1;
+            }
+            i++;
+        }
+        if (lists.length > 0) {
             return lists[0];
+        } else {
+            return null;
         }
-        for (int i = 2; i < lists.length; i++) {
-            curr = merge(curr, lists[i]);
-        }
-        return curr;
     }
 
-    private static ListNode merge(ListNode first, ListNode second) {
+     static ListNode merge(ListNode first, ListNode second) {
         ListNode head = new ListNode();
         ListNode curr = new ListNode();
         head.next = curr;
